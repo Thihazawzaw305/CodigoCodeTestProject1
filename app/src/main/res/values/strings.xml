@@ -4,4 +4,7 @@
     <string name="lbl_question_info">We will ask couple of questions to better understand your vitamin need</string>
     <string name="lbl_get_started">Get started</string>
     <string name="lbl_prioritize">Prioritize</string>
+    <string name="lbl_back">Back</string>
+    <string name="lbl_next">Next</string>
+    <string name="lbl_get_my_personalized_vitamin">Get my personalized vitamin</string>
 </resources>

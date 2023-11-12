@@ -1,4 +1,4 @@
-package com.example.codigocodetestproject1
+package com.example.codigocodetestproject1.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.example.codigocodetestproject1
+package com.example.codigocodetestproject1.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.ItemTouchHelper.START
 import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.codigocodetestproject1.databinding.ActivityGetStartBinding
+import com.example.codigocodetestproject1.R
+import com.example.codigocodetestproject1.adapters.PrioritizeRecyclerViewAdapter
 import com.example.codigocodetestproject1.databinding.ActivitySelectHealthConcernsBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -43,6 +44,7 @@ class SelectHealthConcernsActivity : AppCompatActivity() {
         mPrioritizeRecyclerViewAdapter = PrioritizeRecyclerViewAdapter(itemList)
         binding.recyclerView.adapter = mPrioritizeRecyclerViewAdapter
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -78,12 +80,7 @@ class SelectHealthConcernsActivity : AppCompatActivity() {
                 } else {
                     selectedChips.remove(it.text.toString())
                 }
-                for (index in 0 until chipGroup.childCount) {
-                    val otherChip = chipGroup.getChildAt(index) as? Chip
-                    if (otherChip != null && otherChip != chip) {
-                        otherChip.isEnabled = selectedChips.size < 5 || selectedChips.contains(otherChip.text.toString())
-            }
-        }}}
+              }}
     }
 
     private fun prepareData(){
@@ -122,5 +119,7 @@ class SelectHealthConcernsActivity : AppCompatActivity() {
         }
         ItemTouchHelper(simpleItemTouchCallBack)
     }
+
+
 
 }
