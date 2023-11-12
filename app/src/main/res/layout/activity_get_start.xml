@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary_color"
     tools:context=".GetStartActivity">
 
-    <TextView
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/lbl_welcome"
+        android:textSize="@dimen/text_heading_2x"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_medium_2"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color"
+        android:layout_below="@id/tvWelcome"
+        android:text="Hello, we are here to make your life healthuer and happier"
+        android:textSize="@dimen/text_regular_3x"
+        android:textStyle="bold"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_medium_2"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivWelcomeImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/undraw_sharing_knowledge_03vp"
+        android:layout_centerInParent="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQuestionInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:text="@string/lbl_question_info"
+            android:textSize="@dimen/text_regular_2x"
+            android:textStyle="bold"
+            android:layout_below="@id/ivWelcomeImage"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginStart="@dimen/margin_medium_2"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGetStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/ic_button_background"
+            android:text="@string/lbl_get_started" />
+
+    </RelativeLayout>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
