@@ -3,4 +3,5 @@
     <string name="lbl_welcome">Welcome to DailyVita</string>
     <string name="lbl_question_info">We will ask couple of questions to better understand your vitamin need</string>
     <string name="lbl_get_started">Get started</string>
+    <string name="lbl_prioritize">Prioritize</string>
 </resources>
