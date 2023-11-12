@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/primary_color"
+    android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvQuestionsFromPersonalized"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is your daily exposure to sun is Limited?"
+        android:textSize="@dimen/text_heading_1x"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:layout_margin="@dimen/margin_medium_2"/>
+
+
+    <RadioGroup
+        android:layout_below="@id/tvQuestionsFromPersonalized"
+        android:id="@+id/radioButtonGroupForSorting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_medium_2"
+        >
+
+        <RadioButton
+            android:id="@+id/rBtnRecentlyOpened"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="@dimen/text_regular_2x"
+            />
+        <RadioButton
+            android:id="@+id/rBtnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:textSize="@dimen/text_regular_2x"
+            />
+
+
+
+    </RadioGroup>
+
+
+</RelativeLayout>
