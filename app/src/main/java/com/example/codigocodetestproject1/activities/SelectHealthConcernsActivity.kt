@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.HeaderViewListAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_DRAG
@@ -16,15 +17,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codigocodetestproject1.R
 import com.example.codigocodetestproject1.adapters.PrioritizeRecyclerViewAdapter
+import com.example.codigocodetestproject1.data.HealthConcernData
+import com.example.codigocodetestproject1.data.vos.ChipVO
 import com.example.codigocodetestproject1.databinding.ActivitySelectHealthConcernsBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.gson.Gson
 
 class SelectHealthConcernsActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySelectHealthConcernsBinding
     private val selectedChips = mutableListOf<String>()
     private lateinit var mPrioritizeRecyclerViewAdapter: PrioritizeRecyclerViewAdapter
     private val itemList = mutableListOf<String>()
+    private val chipDataList = mutableListOf<ChipVO>()
 
     companion object{
         fun newIntent(context : Context): Intent {
@@ -50,27 +55,51 @@ class SelectHealthConcernsActivity : AppCompatActivity() {
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setUpChip(){
        val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
-      //  val submitButton = findViewById(R.id.submitButton)
+//      //  val submitButton = findViewById(R.id.submitButton)
+//
+//        val chipNames = listOf("Sleep", "Stress", "Joint Support", "Energy", "Other1", "Other2", "Other3","Sleep", "Stress", "Joint Support", "Energy", "Other1", "Other2", "Other3")
+//
+//        for (chipName in chipNames) {
+//            val chip = Chip(this)
+//            chip.backgroundDrawable = getDrawable(R.drawable.ic_button_background)
+//            //chip.chipBackgroundColor = getColor(com.google.android.material.R.color.mtrl_btn_transparent_bg_color)
+//            chip.text = chipName
+//            chip.isCheckable = true
+//            chipGroup.addView(chip)
+//        }
+//
+//        chipGroup.setOnCheckedChangeListener { group, checkedId ->
+//            val chip = group.findViewById<Chip>(checkedId)
+//            chip?.let {
+//                if (it.isChecked) {
+//                    if (selectedChips.size < 5) {
+//                        selectedChips.add(it.text.toString())
+//                    } else {
+//                        it.isChecked = false
+//                        Toast.makeText(
+//                            this,
+//                            "You can select up to 5 chips",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+//                } else {
+//                    selectedChips.remove(it.text.toString())
+//                }
+//              }}
 
-        val chipNames = listOf("Sleep", "Stress", "Joint Support", "Energy", "Other1", "Other2", "Other3","Sleep", "Stress", "Joint Support", "Energy", "Other1", "Other2", "Other3")
+        val chipData = ChipVO::class.java
+        chipDataList.addAll(Gson().fromJson(HealthConcernData, Array<ChipVO>::class.java).toList())
 
-        for (chipName in chipNames) {
+        for (chipItem in chipDataList) {
             val chip = Chip(this)
-            chip.backgroundDrawable = getDrawable(R.drawable.ic_button_background)
-            //chip.chipBackgroundColor = getColor(com.google.android.material.R.color.mtrl_btn_transparent_bg_color)
-            chip.text = chipName
-            chip.isCheckable = true
-            chipGroup.addView(chip)
-        }
-
-        chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            val chip = group.findViewById<Chip>(checkedId)
-            chip?.let {
-                if (it.isChecked) {
+            chip.text = chipItem.name
+            chip.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
                     if (selectedChips.size < 5) {
-                        selectedChips.add(it.text.toString())
+                        selectedChips.add(chipItem.toString())
+                        updateRecyclerView()
                     } else {
-                        it.isChecked = false
+                        chip.isChecked = false
                         Toast.makeText(
                             this,
                             "You can select up to 5 chips",
@@ -78,9 +107,18 @@ class SelectHealthConcernsActivity : AppCompatActivity() {
                         ).show()
                     }
                 } else {
-                    selectedChips.remove(it.text.toString())
+                    selectedChips.remove(chipItem)
+                    updateRecyclerView()
                 }
-              }}
+            }
+            chipGroup.addView(chip)
+        }
+
+        val layoutManager = LinearLayoutManager(this)
+        val adapter = HeaderViewListAdapter(selectedChips)
+
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
     }
 
     private fun prepareData(){
