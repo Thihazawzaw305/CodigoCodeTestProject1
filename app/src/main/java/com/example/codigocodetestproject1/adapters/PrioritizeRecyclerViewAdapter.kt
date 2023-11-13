@@ -8,10 +8,10 @@ import com.example.codigocodetestproject1.data.ChipVO
 import com.example.codigocodetestproject1.databinding.ViewHolderPrioritizeBinding
 
 class PrioritizeRecyclerViewAdapter():RecyclerView.Adapter<PrioritizeRecyclerViewAdapter.PrioritizeViewHolder> (){
-    private var mSelectedChips: List<ChipVO> = listOf()
+    private var mSelectedChips: List<String> = listOf()
     inner class PrioritizeViewHolder(private val binding : ViewHolderPrioritizeBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(dataText : ChipVO){
-            binding.tvDataText.text =  dataText.name
+        fun bind(dataText : String){
+            binding.tvDataText.text =  dataText
         }
     }
 
@@ -21,14 +21,14 @@ class PrioritizeRecyclerViewAdapter():RecyclerView.Adapter<PrioritizeRecyclerVie
     }
 
     override fun getItemCount(): Int {
-return     mSelectedChips.size
+return    mSelectedChips.size
     }
 
     override fun onBindViewHolder(holder: PrioritizeViewHolder, position: Int) {
       holder.bind(mSelectedChips[position])
     }
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewData(selectedChip: List<ChipVO>) {
+    fun setNewData(selectedChip: List<String>) {
        mSelectedChips = selectedChip
         notifyDataSetChanged()
     }

@@ -1,6 +1,6 @@
 package com.example.codigocodetestproject1.data
 
-val HealthConcernData = """
+val healthConcernData =  """
             {
                 "data": [
                     {"id": 1,"name": "Sleep"},
