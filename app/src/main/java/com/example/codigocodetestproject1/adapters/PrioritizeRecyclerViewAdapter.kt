@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.codigocodetestproject1.data.vos.ChipVO
+import com.example.codigocodetestproject1.data.ChipVO
 import com.example.codigocodetestproject1.databinding.ViewHolderPrioritizeBinding
 
-class PrioritizeRecyclerViewAdapter(private val selectedChips: List<ChipVO>):RecyclerView.Adapter<PrioritizeRecyclerViewAdapter.PrioritizeViewHolder> (){
-
+class PrioritizeRecyclerViewAdapter():RecyclerView.Adapter<PrioritizeRecyclerViewAdapter.PrioritizeViewHolder> (){
+    private var mSelectedChips: List<ChipVO> = listOf()
     inner class PrioritizeViewHolder(private val binding : ViewHolderPrioritizeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(dataText : ChipVO){
             binding.tvDataText.text =  dataText.name
@@ -21,15 +21,15 @@ class PrioritizeRecyclerViewAdapter(private val selectedChips: List<ChipVO>):Rec
     }
 
     override fun getItemCount(): Int {
-return     selectedChips.size
+return     mSelectedChips.size
     }
 
     override fun onBindViewHolder(holder: PrioritizeViewHolder, position: Int) {
-      holder.bind(selectedChips[position])
+      holder.bind(mSelectedChips[position])
     }
-    fun updateData(newData: List<ChipVO>) {
-        selectedChips.clear()
-        selectedChips.addAll(newData)
+    @SuppressLint("NotifyDataSetChanged")
+    fun setNewData(selectedChip: List<ChipVO>) {
+       mSelectedChips = selectedChip
         notifyDataSetChanged()
     }
 
